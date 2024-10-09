@@ -18,20 +18,20 @@ public class Controller {
     @GetMapping("/{id}")
     public ResponseEntity<byte[]> generateForDownload(
             @PathVariable String id,
-            @RequestParam(defaultValue = "en") String lang) { // Default language set to English
+            @RequestParam(defaultValue = "fr") String lang) {
         return generateReport(id, lang, true);
     }
 
     @GetMapping("/{id}/display")
     public ResponseEntity<byte[]> generateForDisplay(
             @PathVariable String id,
-            @RequestParam(defaultValue = "fr") String lang) { // Default language set to English
+            @RequestParam(defaultValue = "fr") String lang) {
         return generateReport(id, lang, false);
     }
 
     private ResponseEntity<byte[]> generateReport(String id, String lang, boolean isDownload) {
         try {
-            byte[] pdfBytes = service.generateAttestationReussite(id, lang); // Pass language parameter
+            byte[] pdfBytes = service.generateAttestationReussite(id, lang);
 
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_PDF);
