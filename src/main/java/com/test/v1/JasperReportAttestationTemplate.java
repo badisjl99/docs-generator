@@ -3,9 +3,7 @@ package com.test.v1;
 
 
 import net.sf.jasperreports.engine.*;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 
-import java.io.File;
 import java.sql.*;
 import java.util.HashMap;
 import java.util.Locale;
@@ -34,13 +32,10 @@ public class JasperReportAttestationTemplate {
             preparedStatement = connection.prepareStatement(sqlQuery);
             preparedStatement.setString(1, studentId);
 
-
             resultSet = preparedStatement.executeQuery();
-
 
             String jasperTemplatePath = "src/main/resources/attestation_reussite.jrxml";
             JasperReport jasperReport = JasperCompileManager.compileReport(jasperTemplatePath);
-
 
             JRResultSetDataSource resultSetDataSource = new JRResultSetDataSource(resultSet);
             Map<String, Object> parameters = new HashMap<>();
